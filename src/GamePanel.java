@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if(currentState == MENU){
 		    drawMenuState(g);
 		}else if(currentState == GAME){
-		    drawGameState(g);
+		    drawGameState(g, rocketship);
 		}else if(currentState == END){
 		    drawEndState(g);
 		}
@@ -33,6 +33,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	  Font titleFont = new Font("Arial", Font.PLAIN, 48);
 	  Font startFont = new Font("Arial", Font.PLAIN, 24);
 	  Font instructionFont = new Font("Arial", Font.PLAIN, 24);
+	  int x = 250;
+	  int y = 700;
+	  int width = 50;
+	  int height = 50;
+	 Rocketship rocketship = new Rocketship( x,  y,  width,  height);
 
 	GamePanel panel;
 	
@@ -66,12 +71,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Press SPACE for instructions", 80, 550);
 	}
 
-	void drawGameState(Graphics g) { 
+	void drawGameState(Graphics g, Rocketship rocketship) { 
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		rocketship.draw(g);
 		
 	}
 
 	void drawEndState(Graphics g)  {
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		
+		
+		g.setFont(titleFont);
+		g.setColor(Color.YELLOW);
+		g.drawString("GAME OVER", 100, 100);
+		
+		g.setFont(startFont);
+		g.setColor(Color.YELLOW);
+		g.drawString("You killed  enemies", 125, 350);
+		
+		g.setFont(instructionFont);
+		g.setColor(Color.YELLOW);
+		g.drawString("Press enter to play again", 80, 550);
 	}
 
 	@Override
