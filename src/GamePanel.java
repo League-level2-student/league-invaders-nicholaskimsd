@@ -37,6 +37,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	  int y = 700;
 	  int width = 50;
 	  int height = 50;
+	  private double velX = 0;
+		private double velY = 0;
 	 Rocketship rocketship = new Rocketship( x,  y,  width,  height);
 
 	GamePanel panel;
@@ -105,11 +107,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}else if(currentState == END){
 		    updateEndState();
 		}
-		System.out.println("action");
+		//System.out.println("action");
 		repaint();
 	}
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e, int key, GamePanel p) {
 		
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
@@ -120,27 +122,76 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
 		    System.out.println("UP");
+		    rocketship.up();
+		    if(rocketship.y < 0) {
+		    rocketship.y=0;
+		    
+		}
 		}
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
 		    System.out.println("LEFT");
+		    rocketship.left();
+		    if (rocketship.x < 0) {
+		    	rocketship.x=0;
+		    }
+		    
 		}
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 		    System.out.println("RIGHT");
+		    rocketship.right();
+		    if(rocketship.x > 430) {
+		    	rocketship.x=430;
+		    }
 		}
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
 		    System.out.println("DOWN");
+		    rocketship.down();																																																																																																				
+		    if(rocketship.y > 710) {
+		    	rocketship.y=710;
+		    }
 		}
-	}
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		if(key == KeyEvent.VK_RIGHT) {
+			p.setVelX(5);
+		}
+		else if(key == KeyEvent.VK_LEFT) {
+			p.setVelX(-5);
+		}
+		else if(key == KeyEvent.VK_DOWN) {
+			p.setVelX(-5);
+		}
+		else if(key == KeyEvent.VK_UP) {
+			p.setVelX(0);
+		}
 		
+	}
+	public void keyReleased(KeyEvent e, int key, GamePanel p) {
+		// TODO Auto-generated method stub
+		x+=velX;
+		y+=velY;
+		if(key == KeyEvent.VK_RIGHT) {
+			p.setVelX(0);
+		}
+		else if(key == KeyEvent.VK_LEFT) {
+			p.setVelX(0);
+		}
+		else if(key == KeyEvent.VK_DOWN) {
+			p.setVelX(0);
+		}
+		else if(key == KeyEvent.VK_UP) {
+			p.setVelX(0);
+		}
+	} 
+	public void setVelX(double velX) {
+		this.velX = velX;
+	}
+	public void setVelY(double velY) {
+		this.velY = velY;
 	}
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+																																											
 	
 }
