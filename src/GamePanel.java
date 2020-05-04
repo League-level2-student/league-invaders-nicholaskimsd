@@ -37,8 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	  int y = 700;
 	  int width = 50;
 	  int height = 50;
-	  private double velX = 0;
-		private double velY = 0;
+	
 	 Rocketship rocketship = new Rocketship( x,  y,  width,  height);
 
 	GamePanel panel;
@@ -111,7 +110,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		repaint();
 	}
 	@Override
-	public void keyPressed(KeyEvent e, int key, GamePanel p) {
+	public void keyPressed(KeyEvent e) {
 		
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
@@ -150,48 +149,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		    	rocketship.y=710;
 		    }
 		}
-		if(key == KeyEvent.VK_RIGHT) {
-			p.setVelX(5);
-		}
-		else if(key == KeyEvent.VK_LEFT) {
-			p.setVelX(-5);
-		}
-		else if(key == KeyEvent.VK_DOWN) {
-			p.setVelX(-5);
-		}
-		else if(key == KeyEvent.VK_UP) {
-			p.setVelX(0);
-		}
 		
-	}
-	public void keyReleased(KeyEvent e, int key, GamePanel p) {
-		// TODO Auto-generated method stub
-		x+=velX;
-		y+=velY;
-		if(key == KeyEvent.VK_RIGHT) {
-			p.setVelX(0);
-		}
-		else if(key == KeyEvent.VK_LEFT) {
-			p.setVelX(0);
-		}
-		else if(key == KeyEvent.VK_DOWN) {
-			p.setVelX(0);
-		}
-		else if(key == KeyEvent.VK_UP) {
-			p.setVelX(0);
-		}
-	} 
-	public void setVelX(double velX) {
-		this.velX = velX;
-	}
-	public void setVelY(double velY) {
-		this.velY = velY;
 	}
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 																																											
-	
+	//hola, confirma una reservacion para el restaurante.  La mesa para dos, nombre de pila, Nick, mi apellido es Kim
 }
