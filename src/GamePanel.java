@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -14,13 +16,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	GamePanel(){
 		Timer frameDraw = new Timer(1000/60,this);
 		frameDraw.start();
+		if (needImage) {
+		    loadImage ("space.png");
+		}
 	}
 	@Override
 	public void paintComponent(Graphics g) {
 		if(currentState == MENU){
 		    drawMenuState(g);
 		}else if(currentState == GAME){
-		    drawGameState(g, rocketship);
+		    drawGameState(g);
 		}else if(currentState == END){
 		    drawEndState(g);
 		}
@@ -38,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	  int width = 50;
 	  int height = 50;
 	
-	 Rocketship rocketship = new Rocketship( x,  y,  width,  height);
+	 Rocketship rocketship = new Rocketship( x,  y,  LeagueInvaders.WIDTH,  LeagueInvaders.HEIGHT);
 
 	GamePanel panel;
 	
@@ -72,10 +77,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Press SPACE for instructions", 80, 550);
 	}
 
-	void drawGameState(Graphics g, Rocketship rocketship) { 
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		rocketship.draw(g);
+	void drawGameState(Graphics g) { 
+		if (gotImage) {
+			g.drawImage(image, x, y, width, height, null);
+		} else {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+		
+			
+		}
+
+		
 		
 	}
 
@@ -163,5 +175,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		
 	}
 																																											
-	//hola, confirma una reservacion para el restaurante.  La mesa para dos, nombre de pila, Nick, mi apellido es Kim
+	public static BufferedImage image;
+	public static boolean needImage = true;
+	public static boolean gotImage = false;	
+	
+	void loadImage(String imageFile) {
+	    if (needImage) {
+	        try {
+	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	        needImage = false;
+	    }
+	}
 }
