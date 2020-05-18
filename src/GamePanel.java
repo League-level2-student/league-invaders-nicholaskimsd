@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	  int width = 50;
 	  int height = 50;
 	
-	 Rocketship rocketship = new Rocketship( x,  y,  LeagueInvaders.WIDTH,  LeagueInvaders.HEIGHT);
+	 Rocketship rocketship = new Rocketship( x,  y,  width,  height);
 
 	GamePanel panel;
 	
@@ -79,14 +79,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics g) { 
 		if (gotImage) {
-			g.drawImage(image, x, y, width, height, null);
+			g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 		} else {
 			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+			g.fillRect(0, 0, width, height);
 		
 			
 		}
-
+		
+rocketship.draw(g);
 		
 		
 	}
