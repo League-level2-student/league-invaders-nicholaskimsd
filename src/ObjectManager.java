@@ -5,18 +5,23 @@ import java.util.ArrayList;
 public class ObjectManager implements ActionListener {
 Rocketship rocketship;
 
-ArrayList<Projectile> projectile = new ArrayList<Projectile>();
-Alien alien;
+ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+ArrayList<Alien> aliens = new ArrayList<Alien>();
+
+
 ObjectManager(Rocketship hi) {
 	rocketship = hi;
 } 
-void addProjectile(ArrayList<Projectile> proj){
-	projectile = proj;
-
+void addProjectile(Projectile projectile){
+	projectiles.add(projectile);
 }
+void addAlien(Alien alien) {
+	aliens.add(alien);
+}
+
 @Override
 public void actionPerformed(ActionEvent arg0) {
 	// TODO Auto-generated method stub
-	
+	addAlien(null);
 }
 }

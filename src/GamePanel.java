@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (needImage) {
 		    loadImage ("space.png");
 		}
+		Timer alienSpawn;
 	}
 	@Override
 	public void paintComponent(Graphics g) {

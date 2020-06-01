@@ -11,6 +11,7 @@ public class Alien extends GameObject{
 		speed = 1;
 		if (needImage) {
 		    loadImage ("alien.png");
+		    
 		}
 	}
 void update(){
@@ -27,6 +28,7 @@ void draw(Graphics g) {
         g.fillRect(x, y, width, height);
     }
 }
+
 public static BufferedImage image;
 public static boolean needImage = true;
 public static boolean gotImage = false;	
