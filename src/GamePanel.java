@@ -12,15 +12,21 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
-
+Timer alienSpawn;
 	GamePanel(){
 		Timer frameDraw = new Timer(1000/60,this);
 		frameDraw.start();
 		if (needImage) {
 		    loadImage ("space.png");
 		}
-		Timer alienSpawn;
+		
+		
 	}
+	
+	void startGame(){
+		alienSpawn = new Timer(1000 , objectManager);
+	    alienSpawn.start();
+		}
 	@Override
 	public void paintComponent(Graphics g) {
 		if(currentState == MENU){
@@ -163,7 +169,7 @@ rocketship.draw(g);
 		    	rocketship.y=710;
 		    }
 		}
-		
+		startGame();
 	}
 	@Override
 	public void keyTyped(KeyEvent arg0) {
