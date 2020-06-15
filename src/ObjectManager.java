@@ -24,5 +24,16 @@ public void actionPerformed(ActionEvent arg0) {
 	// TODO Auto-generated method stub
 	addAlien();
 }
+void update(){
+	for(int i = 0; i> alien.y; i++) {
+		
+	}
+	void purgeObjects() {
+		
+	}
+	void draw(g) {
+		loadImage(imageFile);
+	}
+}
 }
  

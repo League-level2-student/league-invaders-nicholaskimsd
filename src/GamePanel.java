@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 Timer alienSpawn;
+
 	GamePanel(){
 		Timer frameDraw = new Timer(1000/60,this);
 		frameDraw.start();
@@ -170,6 +171,7 @@ rocketship.draw(g);
 		    }
 		}
 		startGame();
+		
 	}
 	@Override
 	public void keyTyped(KeyEvent arg0) {
