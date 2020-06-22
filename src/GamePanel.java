@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 Timer alienSpawn;
-
+ObjectManager objectManager;
 	GamePanel(){
 		Timer frameDraw = new Timer(1000/60,this);
 		frameDraw.start();
