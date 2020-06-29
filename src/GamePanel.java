@@ -14,9 +14,24 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 Timer alienSpawn;
 ObjectManager objectManager;
+Rocketship rocketship;
+final int MENU = 0;
+final int GAME = 1;
+final int END = 2;
+int currentState = MENU;
+  Font titleFont = new Font("Arial", Font.PLAIN, 48);
+  Font startFont = new Font("Arial", Font.PLAIN, 24);
+  Font instructionFont = new Font("Arial", Font.PLAIN, 24);
+  int x = 250;
+  int y = 700;
+  int width = 50;
+  int height = 50;
+
 	GamePanel(){
 		Timer frameDraw = new Timer(1000/60,this);
 		frameDraw.start();
+		rocketship = new Rocketship( x,  y,  width,  height);
+		objectManager = new ObjectManager(rocketship);
 		if (needImage) {
 		    loadImage ("space.png");
 		}
@@ -39,21 +54,9 @@ ObjectManager objectManager;
 		}
 	}
 
-	final int MENU = 0;
-	final int GAME = 1;
-	final int END = 2;
-	int currentState = MENU;
-	  Font titleFont = new Font("Arial", Font.PLAIN, 48);
-	  Font startFont = new Font("Arial", Font.PLAIN, 24);
-	  Font instructionFont = new Font("Arial", Font.PLAIN, 24);
-	  int x = 250;
-	  int y = 700;
-	  int width = 50;
-	  int height = 50;
 	
-	 Rocketship rocketship = new Rocketship( x,  y,  width,  height);
+	
 
-	GamePanel panel;
 	
 	
 
@@ -62,7 +65,7 @@ ObjectManager objectManager;
 	}
 
 	void updateGameState() {
-		
+		objectManager.update();
 	}
 
 	void updateEndState() {
@@ -95,7 +98,7 @@ ObjectManager objectManager;
 			
 		}
 		
-rocketship.draw(g);
+objectManager.draw(g);
 		
 		
 	}
