@@ -43,7 +43,7 @@ int currentState = MENU;
 		alienSpawn = new Timer(1000 , objectManager);
 	    alienSpawn.start();
 		}
-	@Override
+
 	public void paintComponent(Graphics g) {
 		if(currentState == MENU){
 		    drawMenuState(g);
@@ -134,6 +134,7 @@ objectManager.draw(g);
 		repaint();
 	}
 	@Override
+	
 	public void keyPressed(KeyEvent e) {
 		
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
@@ -141,6 +142,9 @@ objectManager.draw(g);
 		        currentState = MENU;
 		    } else {
 		        currentState++;
+		    }
+		    if(currentState == GAME) {
+		    	startGame();
 		    }
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
@@ -172,8 +176,9 @@ objectManager.draw(g);
 		    if(rocketship.y > 710) {
 		    	rocketship.y=710;
 		    }
+		    
 		}
-		startGame();
+		
 		
 	}
 	@Override
