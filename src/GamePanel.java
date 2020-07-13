@@ -66,6 +66,9 @@ int currentState = MENU;
 
 	void updateGameState() {
 		objectManager.update();
+		if(rocketship.isActive==false) {
+			currentState = END;
+		}
 	}
 
 	void updateEndState() {
@@ -177,6 +180,10 @@ objectManager.draw(g);
 		    	rocketship.y=710;
 		    }
 		    
+		}
+		if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+			objectManager.addProjectile(rocketship.getProjectile());
+			
 		}
 		
 		

@@ -31,6 +31,7 @@ public class ObjectManager implements ActionListener {
 	}
 
 	void update() {
+		if(rocketship.isActive == true) {
 		for (int i = 0; i < aliens.size(); i++) {
 			aliens.get(i).update();
 			if (aliens.get(i).y > LeagueInvaders.HEIGHT) {
@@ -44,8 +45,14 @@ public class ObjectManager implements ActionListener {
 			}
 
 		}
+		checkCollision();
+purgeObject();
 
-	}
+		}
+		
+	
+		}
+	
 
 	void draw(Graphics g) {
 		rocketship.draw(g);
@@ -69,5 +76,19 @@ void purgeObject(){
 			projectiles.remove(i);
 		}
 		}
+}
+void checkCollision() {
+	for(int i = 0; i <aliens.size(); i++) {
+		if(rocketship.collisionBox.intersects(aliens.get(i).collisionBox)) {
+			aliens.get(i).isActive = false;
+			rocketship.isActive = false;
+		}
+		for(int y= 0; y < projectiles.size(); y++) {
+		if(projectiles.get(y).collisionBox.intersects(aliens.get(i).collisionBox)) {
+			aliens.get(i).isActive = false;
+			projectiles.get(y).isActive = false;
+		}
+	}
+	}
 }
 }
