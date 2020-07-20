@@ -117,7 +117,7 @@ objectManager.draw(g);
 		
 		g.setFont(startFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("You killed  enemies", 125, 350);
+		g.drawString("You killed"+objectManager.getFinalScore()+"enemies", 125, 350);
 		
 		g.setFont(instructionFont);
 		g.setColor(Color.YELLOW);
