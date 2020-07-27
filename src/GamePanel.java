@@ -117,7 +117,7 @@ objectManager.draw(g);
 		
 		g.setFont(startFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("You killed"+objectManager.getFinalScore()+"enemies", 125, 350);
+		g.drawString("You killed "+objectManager.getFinalScore()+" enemies", 125, 350);
 		
 		g.setFont(instructionFont);
 		g.setColor(Color.YELLOW);
@@ -143,12 +143,15 @@ objectManager.draw(g);
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
+		       rocketship = new Rocketship(x, y, width, height);
+		       objectManager = new ObjectManager(rocketship);
 		    } else {
 		        currentState++;
 		    }
 		    if(currentState == GAME) {
 		    	startGame();
 		    }
+		  
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
 		    System.out.println("UP");
